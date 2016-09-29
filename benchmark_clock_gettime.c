@@ -68,6 +68,16 @@ int main(int argc, char const *argv[])
     printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
            (end.tv_nsec - start.tv_nsec)/ONE_SEC);
 
+    // polygon
+    clock_gettime(CLOCK_ID, &start);
+    for(i = 0; i < loop; i++) {
+        polygon(100);
+    }
+    clock_gettime(CLOCK_ID, &end);
+    printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
+           (end.tv_nsec - start.tv_nsec)/ONE_SEC);
+	
+
 	// error
 	printf("error,");
 
@@ -100,7 +110,12 @@ int main(int argc, char const *argv[])
 	pi = compute_pi_avx_unroll(N);
 	diff_pi = pi - PI > 0 ? pi - PI : PI - pi;
 	error = diff_pi / PI;
-	printf("%0.9lf\n", (double) error);
+	printf("%0.9lf,", (double) error);
 
+	//polygon
+	pi = polygon(100);
+	diff_pi = pi - PI > 0 ? pi - PI : PI - pi;
+	error = diff_pi / PI;
+	printf("%0.9lf\n", (double) error);
     return 0;
 }

@@ -25,6 +25,10 @@ int main(int argc, char const *argv[])
 #if defined(AVXUNROLL)
     pi = compute_pi_avx_unroll(N);
 #endif
+
+#if defined(POLYGON)
+	pi = polygon(N);
+#endif
     printf("N = %d , pi = %lf\n", N, pi);
 
     return 0;

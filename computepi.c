@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <immintrin.h>
 #include <omp.h>
+#include <math.h>
 #include "computepi.h"
 
 double compute_pi_baseline(size_t N)
@@ -116,4 +117,16 @@ double compute_pi_avx_unroll(size_t N)
           tmp3[0] + tmp3[1] + tmp3[2] + tmp3[3] +
           tmp4[0] + tmp4[1] + tmp4[2] + tmp4[3];
     return pi * 4.0;
+}
+
+double polygon(size_t N)
+{
+	N = N >> 2;
+	double polygon_edge_length_squared = 2.0;
+	unsigned int polygon_sides = 4;
+	for (int i = 0; i < N; i++) {
+		polygon_edge_length_squared = 2 - 2 * sqrt(1 - polygon_edge_length_squared / 4);
+		polygon_sides *= 2;
+	}
+	return polygon_sides * sqrt(polygon_edge_length_squared) / 2;
 }
