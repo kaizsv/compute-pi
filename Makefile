@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -std=gnu99 -Wall -fopenmp -mavx
+CFLAGS = -O0 -std=gnu99 -Wall -fopenmp -mavx -lm
 EXECUTABLE = \
 	time_test_baseline time_test_openmp_2 time_test_openmp_4 \
 	time_test_avx time_test_avxunroll \
@@ -35,4 +35,4 @@ plot: gencsv
 	gnuplot ./scripts/runtime.gp
 
 clean:
-	rm -f $(EXECUTABLE) *.o *.s result_clock_gettime.csv runtime.png
+	rm -f $(EXECUTABLE) *.o *.s result_clock_gettime.csv runtime.png error.png
