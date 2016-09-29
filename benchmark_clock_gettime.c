@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     if (argc < 2) return -1;
 
     int N = atoi(argv[1]);
-    int i, loop = 25;
+    int i, loop = 100;
 
     // Baseline
     clock_gettime(CLOCK_ID, &start);
